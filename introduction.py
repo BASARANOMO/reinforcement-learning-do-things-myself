@@ -229,7 +229,7 @@ class Player:
                     next_positions.append([i, j])
                     next_states.append(state.next_state(i, j, self.symbol).hash())
 
-        if np.random.rand() < self.epsilon:
+        if np.random.rand() < self.epsilon: # randomly choose next move
             action = next_positions[np.random.randint(len(next_positions))]
             action.append(self.symbol)
             self.greedy[-1] = False
