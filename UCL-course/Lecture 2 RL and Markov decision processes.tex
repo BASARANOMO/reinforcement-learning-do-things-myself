@@ -7,6 +7,8 @@
 
 \usepackage{amssymb}
 \usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 
 \usepackage{xcolor}
 \usepackage{url}
@@ -132,6 +134,43 @@ Direct solution:
 \begin{equation}
     v_{\pi} = (\mathcal{I} - \gamma \mathcal{P}^{\pi})^{-1} \mathcal{R}^{\pi}
 \end{equation}
+
+\section{Optimal value}
+\subsection{Optimal value functions}
+Optimal state value function:
+\begin{equation}
+    v_{*}(s) = \max_{\pi}v_{\pi}(s)
+\end{equation}
+
+Optimal action value function:
+\begin{equation}
+    q_{*}(s, a) = \max_{\pi}q_{\pi}(s, a)
+\end{equation}
+
+\subsection{Optimal policy}
+Define a partial ordering over policies:
+\begin{equation}
+    \pi \geq \pi' \qquad \text{if} \quad v_{\pi}(s) \geq v_{\pi'}(s) \quad \forall s
+\end{equation}
+
+Theorem: For any MDP,
+\begin{itemize}
+    \item[1.] There exists an optimal policy $\pi_*$ that is better than or equal to all other policies, $\pi_* \geq \pi, \forall \pi$;
+    \item[2.] All optimal policies achieve the optimal state value function, $v_{\pi_*}(s) = v_*(s)$;
+    \item[3.] All optimal policies achieve the optimal action value function, $q_{\pi_*}(s, a) = q_*(s, a)$.
+\end{itemize}
+
+In practice, an optimal policy can be found by maximising over $q_*(s, a)$,
+
+\begin{equation}
+    \pi_*(a|s) = \left\{
+    \begin{array}{cl}
+       1  &  \text{if } a = \argmax_{a\in\mathcal{A}} q_*(s, a)\\
+       0  & \text{otherwise}
+    \end{array}
+    \right.
+\end{equation}
+
 \end{document}
 
 
